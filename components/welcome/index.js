@@ -33,7 +33,7 @@ const Welcome = () => {
     welcome: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'top',
+      justifyContent: 'flex-start',
     },
     text: {
         color: '#262626',

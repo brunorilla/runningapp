@@ -11,6 +11,7 @@ const CustomButton = ({ title, color }) => {
     );
   }
 
+
  const styles = StyleSheet.create({
     main: {
         alignItems: 'center',
@@ -20,7 +21,7 @@ const CustomButton = ({ title, color }) => {
         color: '#262626',
         borderRadius: 8,
         width: 300,
-        height: 48,
+        height: 55,
         marginBottom: 16,
       },
       secondary: {
@@ -31,7 +32,7 @@ const CustomButton = ({ title, color }) => {
         borderRadius: 8,
         borderWidth: 2,
         width: 300,
-        height: 48,
+        height: 55,
       },
       text: {
         fontSize: 15,
