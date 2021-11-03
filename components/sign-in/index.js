@@ -5,7 +5,7 @@ import CustomButton from '../button';
 import usuarioLog from '../../assets/usuarioLog.png'
 
 
-const SingIn = () => {
+const SignIn = ({navigation}) => {
     return (
         <View style={styles.singIn}>
             <View style={styles.main}>
@@ -24,10 +24,10 @@ const SingIn = () => {
                 <Text style={styles.textRegister}> 
                 ────────  O  ────────
                 </Text>
-                <View>
+                <View style={styles.button}>
                 <CustomButton 
                     title={'Iniciar sesión con Facebook'}
-                    color={'main'}
+                    color={'main'} style={styles.button}
                 />
                  </View>
 
@@ -36,7 +36,8 @@ const SingIn = () => {
                 borderBottomColor: 'black',
                 borderBottomWidth: 1,
                 paddingTop: 200,
-            
+                display:"flex",
+                    justifyContent: "center"
                 }}
                />
                 <Text style={styles.text3}>
@@ -91,8 +92,11 @@ const SingIn = () => {
     textRegister:{
         paddingTop:80,
         textAlign: 'center',
-    }
+    },
+      button: {
+        alignSelf:"center"
+      }
 
   });
 
-  export default SingIn;
+  export default SignIn;

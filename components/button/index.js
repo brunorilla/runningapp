@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Button, View, Text } from 'react-native';
 
-const CustomButton = ({ title, color }) => {
+const CustomButton = ({navigation, onPress, title, color }) => {
+    console.log("OnPress equals: ",onPress);
     const buttonStyle = (color === 'main') ? styles.main : styles.secondary;
     return (
         <View style={buttonStyle}>
             {/* Pendiente: sumar al Text el callback del onClick del texto según la función que se mande como parámetro */}
-            <Text style={styles.text}>{title}</Text>
+            <Button style={styles.text} title={title} onPress={()=>navigation.navigate(onPress)}/>
         </View>
     );
   }
@@ -36,7 +37,8 @@ const CustomButton = ({ title, color }) => {
       },
       text: {
         fontSize: 15,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        backgroundColor: "black"
       }
   });
 

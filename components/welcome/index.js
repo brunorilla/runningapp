@@ -2,8 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import CustomButton from '../button';
 import logo from '../../assets/logo.png';
+import SignIn from "../sign-in";
 
-const Welcome = () => {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const Welcome = ({navigation}) => {
     return (
         <View style={styles.welcome}>
             <View style={styles.main}>
@@ -22,7 +27,7 @@ const Welcome = () => {
                 />
                 <CustomButton 
                     title={'Registrarse'}
-                    color={'secondary'}
+                    color={'secondary'} navigation={navigation} onPress={"SignIn"}
                 />
             </View>
         </View>
