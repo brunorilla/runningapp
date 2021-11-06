@@ -24,10 +24,16 @@ const Welcome = ({navigation}) => {
                 <CustomButton 
                     title={'Iniciar sesión'}
                     color={'main'}
+                    navigation={navigation}
+                    onPress={"Bienvenido"}
                 />
                 <CustomButton 
                     title={'Registrarse'}
                     color={'secondary'} navigation={navigation} onPress={"SignIn"}
+                />
+                <CustomButton
+                    title={'Mapa'}
+                    color={'secondary'} navigation={navigation} onPress={"Mapa"}
                 />
             </View>
         </View>

@@ -28,6 +28,7 @@ const SignIn = ({navigation}) => {
                 <CustomButton 
                     title={'Iniciar sesión con Facebook'}
                     color={'main'} style={styles.button}
+                    navigation={navigation} onPress={"SignIn"}
                 />
                  </View>
 
