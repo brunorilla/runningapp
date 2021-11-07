@@ -3,13 +3,22 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'r
 import Lap from "../lap";
 
 const LapsTable = ({laps}) => {
+    {laps.map((lap, index) => {
+        console.log("LAP: ",lap);
+        console.log("INDEX: ", index)
+    })}
+
     return (
         <ScrollView style={styles.scrollView}>
-            {laps.map((lap, index) => {
-                <Lap number={laps.length - index} key={laps.length - index} interval={lap}/>
-            })}
+            {laps.map((lap, index) =>(
+                <Lap
+                    number={laps.length - index}
+                    key={laps.length - index}
+                    interval={lap}/>
+            ))}
         </ScrollView>
     );
+
 };
 
 

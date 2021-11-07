@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Chron from './components/chron'
 import Welcome from './components/welcome';
 import SignIn from './components/sign-in';
 import Map from './components/map';
@@ -20,7 +21,7 @@ export default function App() {
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="Bienvenido" component={Welcome}/>
           <Stack.Screen name="Mapa" component={Map}/>
-          <Stack.Screen name="Chron" component={Timer} interval={interval}/>
+          <Stack.Screen name="Chron" component={Chron}/>
         </Stack.Navigator>
         </NavigationContainer>
   );

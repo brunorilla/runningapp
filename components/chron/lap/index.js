@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
-
+import Timer from '../timer'
 
 const Lap = ({number, interval}) => {
+    console.log("INTERVAL LAP : ", interval)
     return (
         <View style={styles.lap}>
-            <Text style={styles.lapText}>Lap {number}</Text>
-            <Text style={styles.lapText}>{interval}</Text>
+            <Text style={styles.lapText}>Vuelta {number}</Text>
+            <Timer style={styles.lapText}>{interval}</Timer>
         </View>
     );
 };

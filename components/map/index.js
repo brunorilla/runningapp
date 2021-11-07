@@ -25,7 +25,9 @@ const Index = ({navigation}) => {
 
             setmapRegion({
                 latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.04,
+                longitudeDelta: 0.05
             });
 
         })();
