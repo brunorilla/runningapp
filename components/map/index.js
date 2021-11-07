@@ -2,12 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {Platform, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import CustomButton from '../button';
 import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 const Index = ({navigation}) => {
-
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    console.log(location);
+    const [mapRegion, setmapRegion] = useState({latitude: -35.0279,
+        longitude: -58.44420, latitudeDelta: 0.04, longitudeDelta: 0.05});
 
     useEffect(() => {
         (async () => {
@@ -19,6 +22,12 @@ const Index = ({navigation}) => {
 
             let location = await Location.getCurrentPositionAsync({});
             setLocation(location);
+
+            setmapRegion({
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude
+            });
+
         })();
     }, []);
 
@@ -32,7 +41,9 @@ const Index = ({navigation}) => {
     return (
         <View style={styles.outerContainer}>
             <View style={styles.container}>
-                <MapView style={styles.map}/>
+                <MapView style={styles.map} region={mapRegion}>
+                    <Marker coordinate={mapRegion} title='Marker' />
+                </MapView>
             </View>
             <View style={styles.container}>
                 <Text style={styles.paragraph}>{text}</Text>
@@ -41,7 +52,7 @@ const Index = ({navigation}) => {
                 <CustomButton
                     title={'Comenzar recorrido'}
                     color={'main'} style={styles.button}
-                    navigation={navigation} onPress={"Cronometro"}
+
                 />
             </View>
         </View>
@@ -50,9 +61,9 @@ const Index = ({navigation}) => {
 
 const styles = StyleSheet.create({
     outerContainer: {
-      flex: 1,
-      justifyContent: "center",
-      margin: "auto"
+        flex: 1,
+        justifyContent: "center",
+        margin: "auto"
     },
     container: {
         flex: 1,
@@ -61,6 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     map: {
+        marginTop: 30,
         alignContent: 'center',
         width: Dimensions.get('window').width / 1.2,
         height: Dimensions.get('window').height / 1.2,
@@ -69,7 +81,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     centerButton: {
-      justifyContent: "center"
+        justifyContent: "center",
+        alignSelf: "center"
     },
     button: {
         alignItems: 'center',

@@ -3,7 +3,14 @@ import {StyleSheet, Pressable, View, Text} from 'react-native';
 
 const CustomButton = ({navigation, onPress, title, color}) => {
     console.log("OnPress equals: ", onPress);
-    const buttonStyle = (color === 'main') ? styles.main : styles.secondary;
+    let buttonStyle;
+    if (color === 'main') {
+        buttonStyle = styles.main;
+    } else if (color === 'secondary') {
+        buttonStyle = styles.secondary;
+    } else {
+        buttonStyle = styles.tertiary;
+    }
     return (
         <View style={buttonStyle}>
             {/* Pendiente: sumar al Text el callback del onClick del texto según la función que se mande como parámetro */}
@@ -35,6 +42,17 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         width: 300,
         height: 55,
+    },
+    tertiary: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+        color: '#262626',
+        borderRadius: 8,
+        borderWidth: 2,
+        width: 300,
+        height: 55,
+        marginTop: 10
     },
     text: {
         fontSize: 15,
