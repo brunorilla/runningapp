@@ -52,6 +52,8 @@ const Index = ({navigation}) => {
                 <CustomButton
                     title={'Comenzar recorrido'}
                     color={'main'} style={styles.button}
+                    navigation={navigation}
+                    onPress={"Chron"}
 
                 />
             </View>
