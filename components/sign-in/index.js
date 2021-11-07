@@ -63,7 +63,6 @@ const SignIn = ({navigation}) => {
         color: '#262626',
         fontSize: 25,
     },
-  
     text2 :{
         color: '#262626',
         fontSize: 18,
@@ -88,7 +87,6 @@ const SignIn = ({navigation}) => {
         height: 80,
         width: 80,
         marginLeft:170,
-        textAlign: 'center',
     },
     textRegister:{
         paddingTop:80,

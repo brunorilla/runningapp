@@ -25,7 +25,7 @@ const Welcome = ({navigation}) => {
                     title={'Iniciar sesión'}
                     color={'main'}
                     navigation={navigation}
-                    onPress={"Bienvenido"}
+                    onPress={"SignIn"}
                 />
                 <CustomButton 
                     title={'Registrarse'}

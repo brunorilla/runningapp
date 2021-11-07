@@ -1,19 +1,20 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text } from 'react-native';
+import {StyleSheet, Pressable, View, Text} from 'react-native';
 
-const CustomButton = ({navigation, onPress, title, color }) => {
-    console.log("OnPress equals: ",onPress);
+const CustomButton = ({navigation, onPress, title, color}) => {
+    console.log("OnPress equals: ", onPress);
     const buttonStyle = (color === 'main') ? styles.main : styles.secondary;
     return (
         <View style={buttonStyle}>
             {/* Pendiente: sumar al Text el callback del onClick del texto según la función que se mande como parámetro */}
-            <Button style={styles.text} title={title} onPress={()=>navigation.navigate(onPress)}/>
+            <Pressable title={title} onPress={() => navigation.navigate(onPress)}><Text
+                style={styles.text}>{title}</Text></Pressable>
         </View>
     );
-  }
+}
 
 
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     main: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -24,8 +25,8 @@ const CustomButton = ({navigation, onPress, title, color }) => {
         width: 300,
         height: 55,
         marginBottom: 16,
-      },
-      secondary: {
+    },
+    secondary: {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
@@ -34,12 +35,12 @@ const CustomButton = ({navigation, onPress, title, color }) => {
         borderWidth: 2,
         width: 300,
         height: 55,
-      },
-      text: {
+    },
+    text: {
         fontSize: 15,
         fontWeight: "bold",
-        backgroundColor: "black"
-      }
-  });
+        color: "black"
+    }
+});
 
-  export default CustomButton;
+export default CustomButton;
