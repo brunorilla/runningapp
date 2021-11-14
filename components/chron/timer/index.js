@@ -7,7 +7,8 @@ import LapsTable from "../lapsTable";
 
 
 
-const Index = ({interval}) => {
+const Index = ({interval, timerForLap}) => {
+    timerForLap !== 'true' ? styles.timer = styles.timerRegular : styles.timer = styles.timerForLap;
     console.log("INTERVAL: ", interval);
     const duration = moment.duration(interval);
     const centiseconds = Math.floor(duration.milliseconds() / 10);
@@ -19,9 +20,14 @@ const Index = ({interval}) => {
 };
 
 const styles = StyleSheet.create({
-    timer: {
+    timerRegular: {
         color: "#FFFFFF",
         fontSize: 76,
+        fontWeight: '200'
+    },
+    timerForLap : {
+        color: "#FFFFFF",
+        fontSize: 18,
         fontWeight: '200'
     }
 })

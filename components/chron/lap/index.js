@@ -2,12 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
 import Timer from '../timer'
 
-const Lap = ({number, interval}) => {
-    console.log("INTERVAL LAP : ", interval)
+const Lap = ({number, interval, fastest, slowest}) => {
+    console.log("Slowest ", slowest)
+    const lapStyle = [
+        styles.lapText,
+        fastest && styles.fastest,
+        slowest && styles.slowest
+    ]
+    console.log("lapStyle : ", lapStyle)
     return (
         <View style={styles.lap}>
-            <Text style={styles.lapText}>Vuelta {number}</Text>
-            <Timer style={styles.lapText}>{interval}</Timer>
+            <Text style={lapStyle}>Vuelta {number}</Text>
+            <Timer timerForLap={"true"} interval={interval}/>
         </View>
     );
 };
@@ -23,6 +29,12 @@ const styles = StyleSheet.create({
         borderColor: "#151515",
         borderTopWidth: 1,
         paddingVertical: 10
+    },
+    fastest : {
+        color: "#4BC05F"
+    },
+    slowest: {
+        color : "#CC3531"
     }
 });
 

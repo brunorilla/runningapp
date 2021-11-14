@@ -3,10 +3,17 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'r
 import Lap from "../lap";
 
 const LapsTable = ({laps}) => {
-    {laps.map((lap, index) => {
-        console.log("LAP: ",lap);
-        console.log("INDEX: ", index)
-    })}
+    const finishedLaps = laps.slice(1);
+    console.log("Finishedlaps: " ,finishedLaps);
+    console.log(Number.MAX_SAFE_INTEGER);
+    let min = Number.MAX_SAFE_INTEGER;
+    let max = Number.MIN_SAFE_INTEGER;
+    if(finishedLaps.length >= 2){
+        finishedLaps.forEach(lap=>{
+            if(lap < min) min = lap
+            if(lap > max) max = lap
+        });
+    }
 
     return (
         <ScrollView style={styles.scrollView}>
@@ -14,7 +21,10 @@ const LapsTable = ({laps}) => {
                 <Lap
                     number={laps.length - index}
                     key={laps.length - index}
-                    interval={lap}/>
+                    interval={lap}
+                    fastest={lap===min}
+                    slowest={lap===max}
+                />
             ))}
         </ScrollView>
     );

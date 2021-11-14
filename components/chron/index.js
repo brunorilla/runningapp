@@ -14,7 +14,7 @@ const Chron = () => {
    return (
         <View style={styles.container}>
             <Timer interval={DATA.timer}></Timer>
-            <ButtonsRow>
+            <ButtonsRow styles={styles.buttonsRow}>
                 <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'}/>
                 <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'}/>
             </ButtonsRow>
@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingTop: 130,
         paddingHorizontal: 20
+    }, buttonsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 80,
+        marginBottom: 30
     }
 })
 
