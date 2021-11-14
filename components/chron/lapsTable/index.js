@@ -4,7 +4,6 @@ import Lap from "../lap";
 
 const LapsTable = ({laps}) => {
     const finishedLaps = laps.slice(1);
-    console.log("Finishedlaps: " ,finishedLaps);
     console.log(Number.MAX_SAFE_INTEGER);
     let min = Number.MAX_SAFE_INTEGER;
     let max = Number.MIN_SAFE_INTEGER;
