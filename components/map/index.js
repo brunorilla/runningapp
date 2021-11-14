@@ -25,7 +25,9 @@ const Index = ({navigation}) => {
 
             setmapRegion({
                 latitude: location.coords.latitude,
-                longitude: location.coords.longitude
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.04,
+                longitudeDelta: 0.05
             });
 
         })();
@@ -52,6 +54,8 @@ const Index = ({navigation}) => {
                 <CustomButton
                     title={'Comenzar recorrido'}
                     color={'main'} style={styles.button}
+                    navigation={navigation}
+                    onPress={"Chron"}
 
                 />
             </View>
