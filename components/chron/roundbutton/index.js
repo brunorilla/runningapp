@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, Dimensions, TouchableOpacity} from 'react-native';
 import ButtonsRow from "../buttonsRow";
 
-const RoundButton = ({title, color, background}) => {
+const RoundButton = ({title, color, background, onPress, disabled}) => {
     return (
-        <View style={[styles.button, {backgroundColor: background}]}>
+        <TouchableOpacity onPress={() => !disabled && onPress()} style={[styles.button, {backgroundColor: background}]}
+        activeOpacity={disabled ? 1.0 : 0.7}>
             <Text style={[styles.buttonTitle, {color}]}>{title}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 

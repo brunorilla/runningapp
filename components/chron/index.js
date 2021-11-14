@@ -7,18 +7,40 @@ import LapsTable from "./lapsTable";
 import Timer from "./timer";
 
 const Chron = () => {
-    const DATA = {
-        timer: 123456,
-        laps: [123, 456, 789]
+
+    const [time, setTime] = useState({
+        start: 0,
+        now: 0,
+        laps: []
+    })
+    const timer = time.now - time.start;
+
+    function start() {
+        console.log("Calling start");
+        const now = new Date().getTime();
+        setTime({
+            start: now,
+            now,
+            laps: [0]
+        })
+        let chronTimer;
+        chronTimer = setInterval(() => {
+            setTime((prevState)=>
+            {
+                return {...prevState, now : new Date().getTime()}
+            }
+        )
+        }, 100)
     }
-   return (
+
+    return (
         <View style={styles.container}>
-            <Timer interval={DATA.timer}></Timer>
+            <Timer interval={timer}></Timer>
             <ButtonsRow styles={styles.buttonsRow}>
                 <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'}/>
-                <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'}/>
+                <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'} onPress={start}/>
             </ButtonsRow>
-            <LapsTable laps={DATA.laps}></LapsTable>
+            <LapsTable laps={time.laps} time={time.now}></LapsTable>
         </View>
     );
 };

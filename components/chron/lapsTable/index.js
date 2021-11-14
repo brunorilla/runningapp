@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
 import Lap from "../lap";
 
-const LapsTable = ({laps}) => {
+const LapsTable = ({laps, time}) => {
     const finishedLaps = laps.slice(1);
     console.log(Number.MAX_SAFE_INTEGER);
     let min = Number.MAX_SAFE_INTEGER;
@@ -20,7 +20,7 @@ const LapsTable = ({laps}) => {
                 <Lap
                     number={laps.length - index}
                     key={laps.length - index}
-                    interval={lap}
+                    interval={index === 0 ? time + lap : lap}
                     fastest={lap===min}
                     slowest={lap===max}
                 />
