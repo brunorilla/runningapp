@@ -6,26 +6,34 @@ import ButtonsRow from "../buttonsRow/";
 import LapsTable from "../lapsTable";
 
 
-
 const Index = ({interval, timerForLap}) => {
     timerForLap !== 'true' ? styles.timer = styles.timerRegular : styles.timer = styles.timerForLap;
-    console.log("INTERVAL: ", interval);
+    const pad = (n) => n < 10 ? '0' + n : n;
     const duration = moment.duration(interval);
     const centiseconds = Math.floor(duration.milliseconds() / 10);
     return (
-        <View>
-            <Text style={styles.timer}>{duration.minutes()}:{duration.seconds()}:{centiseconds}</Text>
+        <View style={styles.timerContainer}>
+            <Text style={styles.timer}>{pad(duration.minutes())}:</Text>
+            <Text style={styles.timer}>{pad(duration.seconds())}.</Text>
+            <Text style={styles.timer}>{pad(centiseconds)}</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    timerContainer : {
+        flexDirection: "row",
+        alignItems: "center",
+        alignSelf: "center",
+        alignContent: "center"
+    },
     timerRegular: {
         color: "#FFFFFF",
         fontSize: 76,
-        fontWeight: '200'
+        fontWeight: '200',
+        width: 110
     },
-    timerForLap : {
+    timerForLap: {
         color: "#FFFFFF",
         fontSize: 18,
         fontWeight: '200'

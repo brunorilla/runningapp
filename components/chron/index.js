@@ -15,31 +15,51 @@ const Chron = () => {
     })
     const timer = time.now - time.start;
 
-    function start() {
-        console.log("Calling start");
+
+    const start = () => {
         const now = new Date().getTime();
-        setTime({
-            start: now,
-            now,
-            laps: [0]
-        })
-        let chronTimer;
-        chronTimer = setInterval(() => {
-            setTime((prevState)=>
-            {
-                return {...prevState, now : new Date().getTime()}
+        setTime((prevState) => {
+                return {
+                    ...prevState,
+                    start: now,
+                    laps: [0]
+                }
             }
         )
+        var chronTimer;
+        chronTimer = setInterval(() => {
+            setTime((prevState) => {
+                    return {...prevState, now: new Date().getTime()}
+                }
+            )
         }, 100)
     }
 
+    const lap = () => {
+        const timestamp = new Date().getTime();
+        const [firstLap, ...other] = time.laps
+        setTime((prevState) => {
+            return {laps: [0, firstLap + prevState.now - prevState.start, ...other], start: timestamp, now: timestamp}
+        })
+    }
+    const stop = () => {
+
+    }
     return (
         <View style={styles.container}>
             <Timer interval={timer}></Timer>
-            <ButtonsRow styles={styles.buttonsRow}>
-                <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'}/>
-                <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'} onPress={start}/>
-            </ButtonsRow>
+            {time.laps.length === 0 && (
+                <ButtonsRow>
+                    <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'}/>
+                    <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'} onPress={start}/>
+                </ButtonsRow>
+            )}
+            {time.start > 0 && (
+                <ButtonsRow>
+                    <RoundButton title={'Lap'} color={'#FFFFFF'} background={'#3D3D3D'} onPress={lap}/>
+                    <RoundButton title={'Stop'} color={'#E33935'} background={'#3C1715'} onPress={stop}/>
+                </ButtonsRow>
+            )}
             <LapsTable laps={time.laps} time={time.now}></LapsTable>
         </View>
     );

@@ -3,13 +3,11 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'r
 import Timer from '../timer'
 
 const Lap = ({number, interval, fastest, slowest}) => {
-    console.log("Slowest ", slowest)
     const lapStyle = [
         styles.lapText,
         fastest && styles.fastest,
         slowest && styles.slowest
     ]
-    console.log("lapStyle : ", lapStyle)
     return (
         <View style={styles.lap}>
             <Text style={lapStyle}>Vuelta {number}</Text>

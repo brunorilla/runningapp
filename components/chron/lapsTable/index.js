@@ -4,7 +4,7 @@ import Lap from "../lap";
 
 const LapsTable = ({laps, time}) => {
     const finishedLaps = laps.slice(1);
-    console.log(Number.MAX_SAFE_INTEGER);
+    console.log("Time being passed is: ", time);
     let min = Number.MAX_SAFE_INTEGER;
     let max = Number.MIN_SAFE_INTEGER;
     if(finishedLaps.length >= 2){
@@ -13,7 +13,10 @@ const LapsTable = ({laps, time}) => {
             if(lap > max) max = lap
         });
     }
-
+    laps.map((lap,index)=>{
+        console.log("lap being passed: ", lap)
+        console.log("TIME MAS LAP: ", time + lap);
+    })
     return (
         <ScrollView style={styles.scrollView}>
             {laps.map((lap, index) =>(
