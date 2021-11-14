@@ -17,7 +17,11 @@ const Chron = () => {
     const [chronInterval, setChronInterval] = useState();
 
     const timer = time.now - time.start;
-
+    useEffect(() => {
+        return ()=>{
+            clearInterval(chronInterval);
+        }
+    }, [])
 
     const start = () => {
         const now = new Date().getTime();
@@ -56,16 +60,16 @@ const Chron = () => {
 
     const reset = () => {
         setTime({
-            laps : [],
-            start : 0,
-            now : 0
+            laps: [],
+            start: 0,
+            now: 0
         })
     }
 
-    const resume = ()=>{
+    const resume = () => {
         const now = new Date().getTime()
-        setTime((prevState)=> {
-            return  {...prevState, start : now}
+        setTime((prevState) => {
+            return {...prevState, start: now}
         })
         let chronTimer = setInterval(() => {
             setTime((prevState) => {
@@ -88,7 +92,7 @@ const Chron = () => {
             )}
             {time.start > 0 && (
                 <ButtonsRow>
-                    <RoundButton title={'Vuelta'} color={'#FFFFFF'} background={'#3D3D3D'} onPress={lap}/>
+                    <RoundButton title={'Vuelta'} color={'#FFFFFF'} background={'#151515'} onPress={lap}/>
                     <RoundButton title={'Stop'} color={'#E33935'} background={'#3C1715'} onPress={stop}/>
                 </ButtonsRow>
             )}
