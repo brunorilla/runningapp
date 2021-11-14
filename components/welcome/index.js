@@ -29,7 +29,7 @@ const Welcome = ({navigation}) => {
                 />
                 <CustomButton
                     title={'Registrarse'}
-                    color={'secondary'} navigation={navigation} onPress={"SignIn"}
+                    color={'secondary'} navigation={navigation} onPress={"SignIn"}  //TODO: modificar vista
                 />
                 <CustomButton
                     title={'Mapa'}

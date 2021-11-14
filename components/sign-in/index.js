@@ -20,15 +20,18 @@ const SignIn = ({navigation}) => {
                     source={usuarioLog}
                 />
                 <Text style={styles.text2}>
-                    ¿Sos nuevo? Crear una cuenta
+                    ¿Sos nuevo?
+                </Text>
+                <Text style={styles.text2}>
+                    Crear una cuenta
                 </Text>
 
                 <Text style={styles.textRegister}>
                     ──────── O ────────
                 </Text>
-                <View style={styles.button}>
+                <View style={styles.buttonContainer}>
                     <CustomButton
-                        title={'Iniciar sesión con Facebook'}
+                        title={'Iniciar sesión con Google'}
                         color={'main'} style={styles.button}
                         navigation={navigation} onPress={"SignIn"}
                     />
@@ -38,7 +41,7 @@ const SignIn = ({navigation}) => {
                     style={{
                         borderBottomColor: 'black',
                         borderBottomWidth: 1,
-                        paddingTop: 200,
+                        paddingTop: 100,
                         display: "flex",
                         justifyContent: "center"
                     }}
@@ -60,6 +63,7 @@ const styles = StyleSheet.create({
     },
     main: {
         flex: 0.8,
+        alignItems: 'center',
     },
     text: {
         color: '#262626',
@@ -83,12 +87,11 @@ const styles = StyleSheet.create({
         fontSize: 35,
         paddingTop: 20,
         paddingBottom: 10,
-        paddingStart: 100,
+        textAlign: 'center',
     },
     usuarioLog: {
         height: 80,
         width: 80,
-        marginLeft: 170,
     },
     textRegister: {
         paddingTop: 80,
@@ -96,8 +99,11 @@ const styles = StyleSheet.create({
     },
     button: {
         alignSelf: "center"
+    },
+    buttonContainer: {
+        marginTop: 16,
     }
-
 });
 
 export default SignIn;
+

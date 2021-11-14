@@ -27,9 +27,8 @@ export default function App() {
     <GlobalContext.Provider value={{ AuthData, setAuthData }} >
 
       <NavigationContainer>
-        {
-          (isAuthenticated()) ?
-        
+          {/* {
+          (isAuthenticated()) ? */}
         <Stack.Navigator initialRouteName="Bienvenido">
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="Bienvenido" component={Welcome}/>
@@ -37,12 +36,12 @@ export default function App() {
           <Stack.Screen name="Chron" component={Chron}/>
         </Stack.Navigator>
 
-        :
-        <Stack.Navigator>
+         {/* :
+         <Stack.Navigator>
 
-          <Stack.Screen name={'Login'} component={Login} />
-        </Stack.Navigator>   
-      } 
+           <Stack.Screen name={'Login'} component={Login} />
+         </Stack.Navigator>   
+       }  */}
         </NavigationContainer>
 
         </GlobalContext.Provider>
