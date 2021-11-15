@@ -34,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Bienvenido" component={Welcome}/>
           <Stack.Screen name="Mapa" component={Map}/>
           <Stack.Screen name="Chron" component={Chron}/>
+          <Stack.Screen name={'Login'} component={Login} />
         </Stack.Navigator>
 
          {/* :

@@ -33,7 +33,7 @@ const SignIn = ({navigation}) => {
                     <CustomButton
                         title={'Iniciar sesión con Google'}
                         color={'main'} style={styles.button}
-                        navigation={navigation} onPress={"SignIn"}
+                        navigation={navigation} onPress={"Login"}
                     />
                 </View>
 
