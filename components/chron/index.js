@@ -16,9 +16,9 @@ const Chron = () => {
 
     const [chronInterval, setChronInterval] = useState();
 
-    const timer = time.now - time.start;
+    const timer = time.now - time.start < 0 ? 0 : time.now - time.start;
     useEffect(() => {
-        return ()=>{
+        return () => {
             clearInterval(chronInterval);
         }
     }, [])
@@ -45,8 +45,10 @@ const Chron = () => {
 
     const lap = () => {
         const timestamp = new Date().getTime();
-        const [firstLap, ...other] = time.laps
+        const [firstLap, ...other] = time.laps;
+
         setTime((prevState) => {
+            console.log(prevState);
             return {laps: [0, firstLap + prevState.now - prevState.start, ...other], start: timestamp, now: timestamp}
         })
     }
@@ -54,7 +56,7 @@ const Chron = () => {
         clearInterval(chronInterval)
         const [firstLap, ...other] = time.laps
         setTime((prevState) => {
-            return {laps: [0, firstLap + prevState.now - prevState.start, ...other], start: 0, now: 0}
+            return {laps: [firstLap + prevState.now - prevState.start, ...other], start: 0, now: 0}
         })
     }
 
@@ -83,10 +85,12 @@ const Chron = () => {
     return (
         <View style={styles.container}>
             <Timer interval={
-                time.laps.reduce((total, curr) => total + curr, 0) + timer}></Timer>
+                time.laps.reduce((total, curr) => {
+                    return total + curr;
+                }, 0) + timer}/>
             {time.laps.length === 0 && (
                 <ButtonsRow>
-                    <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'}/>
+                    <RoundButton title={'Reset'} color={'#FFFFFF'} background={'#3D3D3D'} disabled onPress={reset}/>
                     <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'} onPress={start}/>
                 </ButtonsRow>
             )}
@@ -102,7 +106,7 @@ const Chron = () => {
                     <RoundButton title={'Start'} color={'#50D167'} background={'#1B361F'} onPress={resume}/>
                 </ButtonsRow>
             )}
-            <LapsTable laps={time.laps} time={time.now}></LapsTable>
+            <LapsTable laps={time.laps} time={time.now - time.start < 0 ? 0 : time.now - time.start}/>
         </View>
     );
 };

@@ -35,7 +35,6 @@ export default function Login() {
     const [login, setLogin] = useState({})
 
     const postLogin = () => {
-        console.log('debuggin')
         promptAsync()
 
 

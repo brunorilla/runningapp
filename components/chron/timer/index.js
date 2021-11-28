@@ -3,7 +3,6 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions} from 'react-native'
 import moment from "moment";
 import RoundButton from '../roundbutton/';
 import ButtonsRow from "../buttonsRow/";
-import LapsTable from "../lapsTable";
 
 
 const Index = ({interval, timerForLap}) => {
