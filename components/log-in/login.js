@@ -10,6 +10,7 @@ export default function Login() {
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         expoClientId: '470463937632-ud5fd9mu4vbm8a62vejeo1vnvgog5d3e.apps.googleusercontent.com',
+       // expoClientId: '470463937632-6f5th6gsiqpmb4j25ma5shb58ss97blg.apps.googleusercontent.com',
         iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
         androidClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
         webClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
@@ -35,7 +36,6 @@ export default function Login() {
     const [login, setLogin] = useState({})
 
     const postLogin = () => {
-        console.log('debuggin')
         promptAsync()
 
 
