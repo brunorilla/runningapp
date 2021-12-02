@@ -5,6 +5,7 @@ import RoundButton from './roundbutton/';
 import ButtonsRow from "./buttonsRow/";
 import LapsTable from "./lapsTable";
 import Timer from "./timer";
+import asyncMethods from "../globals/globalHistory";
 
 const Chron = () => {
 
@@ -60,7 +61,10 @@ const Chron = () => {
         })
     }
 
-    const reset = () => {
+    const reset = async () => {
+        console.log(time.laps);
+        let response = await asyncMethods.storeData(asyncMethods.MY_STORAGE_KEY,time.laps);
+        console.log(response);
         setTime({
             laps: [],
             start: 0,
