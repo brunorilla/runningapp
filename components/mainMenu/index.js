@@ -3,13 +3,12 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import CustomButton from '../button';
 import logo from '../../assets/logo.png';
 import SignIn from "../sign-in";
-import MainMenu from "../mainMenu";
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 
-const Welcome = ({navigation}) => {
+const MainMenu = ({navigation}) => {
     return (
         <View style={styles.welcome}>
             <View style={styles.main}>
@@ -18,23 +17,28 @@ const Welcome = ({navigation}) => {
                     source={logo}
                 />
                 <Text style={styles.text}>
-                    Bienvenido a Running App
+                    Running App
                 </Text>
             </View>
             <View>
+               <CustomButton
+                    title={'Mapa'}
+                    color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Mapa"}
+                />
+            </View>
+            <View>
                 <CustomButton
-                    title={'Iniciar sesión'}
-                    color={'main'}
+                    title={'Historial'}
+                    color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Historial"}
+                />
+            </View>
+            <View style={styles.marginTop}>
+                <CustomButton
+                    title={'Comenzar recorrido'}
+                    color={'main'} style={styles.button}
                     navigation={navigation}
-                    onPress={"SignIn"}
-                />
-                <CustomButton
-                    title={'Registrarse'}
-                    color={'secondary'} navigation={navigation} onPress={"SignIn"}  //TODO: modificar vista
-                />
-                <CustomButton
-                    title={'Menu Principal'}
-                    color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Menu Principal"}
+                    onPress={"Chron"}
+
                 />
             </View>
         </View>
@@ -50,6 +54,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#262626',
         fontSize: 25,
+        textAlign: "center"
     },
     logo: {
         height: 250,
@@ -60,7 +65,23 @@ const styles = StyleSheet.create({
     },
     marginTop: {
         marginTop: 10
+    },
+    centerButton: {
+        justifyContent: "center",
+        alignSelf: "center",
+    },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: 'black',
+    },
+    chronButton: {
+        marginTop: 10
     }
 });
 
-export default Welcome;
+export default MainMenu;

@@ -6,6 +6,8 @@ import Welcome from './components/welcome';
 import SignIn from './components/sign-in';
 import Map from './components/map';
 import Timer from './components/chron/timer';
+import MainMenu from "./components/mainMenu";
+import History from "./components/history";
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -32,8 +34,10 @@ export default function App() {
         <Stack.Navigator initialRouteName="Bienvenido">
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="Bienvenido" component={Welcome}/>
+          <Stack.Screen name="Menu Principal" component={MainMenu}/>
           <Stack.Screen name="Mapa" component={Map}/>
           <Stack.Screen name="Chron" component={Chron}/>
+          <Stack.Screen name="Historial" component={History}/>
           <Stack.Screen name={'Login'} component={Login} />
         </Stack.Navigator>
 

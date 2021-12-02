@@ -50,15 +50,6 @@ const Index = ({navigation}) => {
             <View style={styles.container}>
                 <Text style={styles.paragraph}>{text}</Text>
             </View>
-            <View style={styles.centerButton}>
-                <CustomButton
-                    title={'Comenzar recorrido'}
-                    color={'main'} style={styles.button}
-                    navigation={navigation}
-                    onPress={"Chron"}
-
-                />
-            </View>
         </View>
     );
 };
