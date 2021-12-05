@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import CustomButton from '../button';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo-short.png';
 import {ScrollView} from "react-native";
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LapsTable from "../chron/lapsTable";
 
@@ -27,12 +24,14 @@ const History = ({navigation}) => {
 
         let data = await getData("laps").then(r => {
             return r;
+        }).catch(()=>{
+            throw Error;
         })
-        console.log("data equals ->" + data.values.map((a, index) => {
-            console.log(parseTime(a.totalTime))
-
-        }))
+        try {
         setHistory(data);
+        } catch(e){
+            console.error("Error fetching data")
+        }
     }, [])
 
 
@@ -52,7 +51,25 @@ const History = ({navigation}) => {
         }
         return arr;
     }
-
+    var layout;
+    try{
+    if(history === null){
+        console.log("Primer if")
+        layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
+    } else if (typeof history === "undefined" || typeof history.values === "undefined"){
+        console.log("Else if")
+        layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
+    } else {
+        layout = history.values.map((data, index) => (
+            (<View style={styles.containerForList} key={index}>
+                <View style={styles.paddingVertical10}><Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>{data.fullDate}</Text></View>
+                <View style={[styles.paddingVertical2, styles.paddingHorizontal5]}><LapsTable laps={parseTime(data.totalTime)} time={0}></LapsTable></View>
+            </View>)
+        ))}
+    } catch(e){
+        layout = <Text>Error al buscar su historial. Consulte a servicio técnico</Text>
+        console.error("Error fetching history");
+    }
     return (<View style={styles.container}>
         <View style={styles.welcome}>
             <View style={styles.main}>
@@ -65,48 +82,84 @@ const History = ({navigation}) => {
                 </Text>
             </View>
         </View>
-        <ScrollView style={[styles.container, styles.mediumWidth, styles.greyBackground]}>
-            {history === null ? <Text>Hello</Text> : history.values.map((data, index) => (
-                <View>
-                    <Text>{data.fullDate}</Text>
-                    <View><LapsTable laps={parseTime(data.totalTime)} time={0}></LapsTable></View>
-                </View>
-            ))}
+        <ScrollView style={[styles.scrollContainer, styles.mediumWidth, styles.background]}>
+            {layout}
         </ScrollView>
     </View>)
 }
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: "#e7e1e1",
+        overflow: "scroll"
+    },
+    containerForList: {
+      display: "flex"
+    },
+    scrollContainer: {
         display: "flex",
-        flex: 1
+        overflow: "scroll"
     },
     mediumWidth: {
-        width: "100%",
-        alignSelf: "flex-end",
-        paddingLeft: "5%",
-        paddingHorizontal: "5%"
+        width: "90%",
+        alignSelf: "center",
+        marginTop: 20
     },
-    greyBackground: {
-        backgroundColor: "#625d5d"
+    background: {
+        backgroundColor: "#000"
     },
     welcome: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        marginTop: 10
+    },
+    textAlignLeft : {
+      textAlign: "left"
+    },
+    whiteColor: {
+        color: "#FFF"
+    },
+    blackColor: {
+        color: "#000"
     },
     text: {
         color: '#262626',
-        fontSize: 25,
+        fontSize: 20,
         textAlign: "center"
     },
+    text18 : {
+        fontSize: 18,
+        lineHeight: 22,
+        alignItems: "center",
+    },
+    timeStyles : {
+        paddingTop: 20,
+        paddingHorizontal: 5,
+        backgroundColor: "#e7e1e1",
+        width: "100%",
+        borderTopWidth: 10,
+        borderBottomWidth: 10,
+        borderColor: "#c2c2c2",
+    },
+    timeContainer: {
+
+    },
+    paddingVertical10: {
+        paddingVertical: 10
+    },
+    paddingVertical2 : {
+        paddingVertical: 2
+    },
+    paddingHorizontal5: {
+        paddingHorizontal: 5
+    },
     logo: {
-        height: 200,
-        width: 200,
+        height: 61,
+        width: 118,
         alignSelf: "center"
     },
     main: {
-        flex: 0.8,
+        paddingVertical: 10
     },
     marginTop: {
         marginTop: 10
@@ -130,11 +183,3 @@ const styles = StyleSheet.create({
 });
 
 export default History;
-
-
-/*{
-               <View>
-                    <Text>{data.fullDate}</Text>
-                    <View><LapsTable laps={[]}time={parseTime(data.totalTime).reduce((total, curr) => parseInt(total) + parseInt(curr))}></LapsTable></View>
-                </View>
-}*/
