@@ -54,9 +54,9 @@ const History = ({navigation}) => {
     var layout;
     try{
     if(history === null){
-        layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
+        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Aún no tiene historial de recorridos. Comience a correr!</Text>
     } else if (typeof history === "undefined" || typeof history.values === "undefined"){
-        layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
+        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Aún no tiene historial de recorridos. Comience a correr!</Text>
     } else {
         layout = history.values.map((data, index) => (
             (<View style={styles.containerForList} key={index}>
@@ -65,7 +65,7 @@ const History = ({navigation}) => {
             </View>)
         ))}
     } catch(e){
-        layout = <Text>Error al buscar su historial. Consulte a servicio técnico</Text>
+        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Error al buscar su historial. Consulte a servicio técnico</Text>
         console.error("Error fetching history");
     }
     return (<View style={styles.container}>
