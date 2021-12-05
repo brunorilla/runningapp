@@ -4,6 +4,7 @@ import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import GlobalContext, { authData } from '../context';
 import * as Google from 'expo-auth-session/providers/google';
+import { buildCodeAsync } from 'expo-auth-session/build/PKCE';
 
 
 export default function Login() {
@@ -20,12 +21,12 @@ export default function Login() {
     });
 
     useEffect(() => {
-        // console.log(response)
+
         if (response?.type === 'success') {
             const { authentication } = response;
             fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${authentication.accessToken}`)
             .then(res => res.json())
-            // .then(data => console.log(data))
+        
             .then(data => {
                 setAuthData({
                 nombre: data.given_name,
@@ -43,45 +44,25 @@ export default function Login() {
 
     const postLogin = () => {
         promptAsync()
-
-
-        // envio de info al backend para validar email y password
-        // si recibo el ok cambio el estado
-        // setAuthData({
-        //     ...authData,
-        //     email: login.email
-        // })
     }
 
     return (
         <View style={styles.container}>
-            <Text>Login!</Text>
-
+             <Text style={styles.text}>
+                    Google authentication
+                </Text>
+        
+         <View style={styles.button}>
             <TouchableOpacity
                 activeOpacity={0.5}
                 onPress={postLogin}
             >
                 <Image
                     source={require('../../assets/GoogleSignIn.png')}
-                    style={styles.googleSignIng}
+                    style={styles.googleSignIn}
                 />
             </TouchableOpacity>
-
-
-            {/* <TextInput
-                placeholder={'Email'}
-                value={login.email}
-                onChangeText={(text) => { setLogin({ ...login, email: text.toLowerCase() }) }}
-            /> */}
-            {/* <TextInput
-                placeholder={'Email'}
-                value={login.name}
-                onChangeText={(text) => { setLogin({ ...login, email: text.toLowerCase() }) }}
-            /> */}
-            {/* <Button
-                title={'Login'}
-                onPress={postLogin}
-             /> */}
+            </View>
             <StatusBar style="auto" />
 
         </View>
@@ -95,8 +76,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    googleSignIng: {
-        width: 200,
+    text: {
+        flex:1,
+        color: '#262626',
+        fontSize: 25,
+        marginTop: 50,
+    },
+    button: {
+        flex: 1,
+        marginBottom:300,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    googleSignIn: {
+        width: 250,
         height: 50
 
     }

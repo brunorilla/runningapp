@@ -5,6 +5,7 @@ import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import GlobalContext, { authData } from '../context';
 import * as Google from 'expo-auth-session/providers/google';
+import logo from '../../assets/logo.png';
 
 
 const LoggedMenu = ({navigation}) => {
@@ -13,6 +14,17 @@ const LoggedMenu = ({navigation}) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
+
+            <View style={styles.main}>
+                <Image
+                    style={styles.logo}
+                    source={logo}
+                />
+                <Text style={styles.text}>
+                    Menú principal
+                </Text>
+            </View>
+
             <View style={styles.main}>
                 <CustomButton
                     title={'Mapa'}
@@ -56,6 +68,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    text: {
+        color: '#262626',
+        fontSize: 25,
+    },
+    logo: {
+        height: 250,
+        width: 250,
     }
 });
 
