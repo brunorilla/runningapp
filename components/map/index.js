@@ -8,7 +8,7 @@ import * as Location from 'expo-location';
 const Index = ({navigation}) => {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    console.log(location);
+    //console.log(location);
     const [mapRegion, setmapRegion] = useState({latitude: -35.0279,
         longitude: -58.44420, latitudeDelta: 0.04, longitudeDelta: 0.05});
 
@@ -49,15 +49,6 @@ const Index = ({navigation}) => {
             </View>
             <View style={styles.container}>
                 <Text style={styles.paragraph}>{text}</Text>
-            </View>
-            <View style={styles.centerButton}>
-                <CustomButton
-                    title={'Comenzar recorrido'}
-                    color={'main'} style={styles.button}
-                    navigation={navigation}
-                    onPress={"Chron"}
-
-                />
             </View>
         </View>
     );

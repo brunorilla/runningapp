@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import React from 'react';
+import { StyleSheet, View} from 'react-native';
 
 const ButtonsRow = ({children}) => {
     return (

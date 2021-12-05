@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions} from 'react-native';
-import moment from "moment";
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import RoundButton from './roundbutton/';
 import ButtonsRow from "./buttonsRow/";
 import LapsTable from "./lapsTable";
 import Timer from "./timer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Chron = () => {
 
@@ -48,7 +48,7 @@ const Chron = () => {
         const [firstLap, ...other] = time.laps;
 
         setTime((prevState) => {
-            console.log(prevState);
+
             return {laps: [0, firstLap + prevState.now - prevState.start, ...other], start: timestamp, now: timestamp}
         })
     }
@@ -60,12 +60,67 @@ const Chron = () => {
         })
     }
 
-    const reset = () => {
+    const reset = async () => {
+        await storeData(time.laps, "laps")
         setTime({
             laps: [],
             start: 0,
             now: 0
-        })
+        });
+
+    }
+
+    const storeData = async (value, key) => {
+        try {
+            let data = await getData("laps").then(r => {
+                return r
+            });
+            if(typeof data === "undefined" || data === null || typeof data !== "object"){
+                console.log("data is null");
+                data = {values: []};
+            }
+            console.log("DATA: ---->", data);
+            console.log("Calling storeData");
+
+            const jsonValue = JSON.stringify(value)
+            console.log("JSON VALUE: ----> ", jsonValue)
+            let midTermValue = {
+                fullDate: getDate(),
+                totalTime : jsonValue
+            }
+            data.values.push(midTermValue);
+            console.log("Full Object", data)
+            await AsyncStorage.setItem(key, JSON.stringify(data))
+        } catch (e) {
+            console.log(e);
+            console.log("Error in storeData method");
+        }
+    }
+
+    const getDate = () =>{
+        let date_ob = new Date();
+        let date = IntTwoChars(date_ob.getDate());
+        let month = IntTwoChars(date_ob.getMonth() + 1);
+        let year = date_ob.getFullYear();
+        let hours = IntTwoChars(date_ob.getHours());
+        let minutes = IntTwoChars(date_ob.getMinutes());
+        let seconds = IntTwoChars(date_ob.getSeconds());
+        return `Fecha: ${month}/${date}/${year} | Tiempo Total: ${hours}:${minutes}:${seconds} `;
+
+        function IntTwoChars(i) {
+            return (`0${i}`).slice(-2);
+        }
+    }
+
+    const getData = async (key) => {
+        try {
+            const jsonValue = await AsyncStorage.getItem(key)
+            console.log(jsonValue)
+            return jsonValue != null ? JSON.parse(jsonValue) : null;
+
+        } catch (e) {
+            console.log("Error in getData method");
+        }
     }
 
     const resume = () => {

@@ -5,8 +5,6 @@ import logo from '../../assets/logo.png';
 import SignIn from "../sign-in";
 import GlobalContext from "../context"
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 
 
 const Welcome = ({navigation}) => {
@@ -35,10 +33,12 @@ const Welcome = ({navigation}) => {
                     title={'Registrarse'}
                     color={'secondary'} navigation={navigation} onPress={"SignIn"}  //TODO: modificar vista
                 />
+
                 {/* <CustomButton
                     title={'Mapa'}
                     color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Mapa"}
                 /> */}
+
             </View>
         </View>
     );
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     logo: {
         height: 250,
         width: 250,
+        alignSelf: "center"
     },
     main: {
         flex: 0.8,
