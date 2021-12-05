@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import Timer from '../timer'
 
 const Lap = ({number, interval, fastest, slowest}) => {

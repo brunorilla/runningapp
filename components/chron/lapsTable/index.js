@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
+import React from 'react';
+import { StyleSheet, ScrollView} from 'react-native';
 import Lap from "../lap";
 
 const LapsTable = ({laps, time}) => {
@@ -13,11 +13,7 @@ const LapsTable = ({laps, time}) => {
             if(lap > max) max = lap
         });
     }
-    laps.map((lap,index)=>{
-        if(index == 0){
 
-        }
-    })
     return (
         <ScrollView style={styles.scrollView}>
             {laps.map((lap, index) =>(

@@ -54,10 +54,8 @@ const History = ({navigation}) => {
     var layout;
     try{
     if(history === null){
-        console.log("Primer if")
         layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
     } else if (typeof history === "undefined" || typeof history.values === "undefined"){
-        console.log("Else if")
         layout = <Text>Aún no tiene historial de recorridos. Comience a correr!</Text>
     } else {
         layout = history.values.map((data, index) => (

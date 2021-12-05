@@ -3,10 +3,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import CustomButton from '../button';
 import logo from '../../assets/logo.png';
 import SignIn from "../sign-in";
-import MainMenu from "../mainMenu";
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 
 
 const Welcome = ({navigation}) => {
@@ -34,7 +31,7 @@ const Welcome = ({navigation}) => {
                 />
                 <CustomButton
                     title={'Menu Principal'}
-                    color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Menu Principal"}
+                    color={'tertiary'} navigation={navigation} onPress={"Menu Principal"}
                 />
             </View>
         </View>
