@@ -47,20 +47,19 @@ const Index = ({navigation}) => {
                     <Marker coordinate={mapRegion} title='Marker' />
                 </MapView>
             </View>
-            <View style={styles.container}>
-                <Text style={styles.paragraph}>{text}</Text>
-            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     outerContainer: {
+        width: "100%",
         flex: 1,
         justifyContent: "center",
         margin: "auto"
     },
     container: {
+        width: "100%",
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     map: {
         marginTop: 30,
         alignContent: 'center',
-        width: Dimensions.get('window').width / 1.2,
+        width: Dimensions.get('window').width / 1,
         height: Dimensions.get('window').height / 1.2,
     }, paragraph: {
         fontSize: 18,

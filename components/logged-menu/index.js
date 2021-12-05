@@ -1,19 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useContext, useEffect } from 'react';
+import {StatusBar} from 'expo-status-bar';
+import React, {useState, useContext, useEffect} from 'react';
 import CustomButton from '../button';
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import GlobalContext, { authData } from '../context';
+import {Button, Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import GlobalContext, {authData} from '../context';
 import * as Google from 'expo-auth-session/providers/google';
 import logo from '../../assets/logo.png';
 
 
 const LoggedMenu = ({navigation}) => {
-    const { setAuthData } = useContext(GlobalContext)
+    const {setAuthData} = useContext(GlobalContext)
 
     return (
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar style="auto"/>
 
             <View style={styles.main}>
                 <Image
@@ -36,14 +36,20 @@ const LoggedMenu = ({navigation}) => {
                     navigation={navigation}
                     onPress={"Chron"}
                 />
+                <CustomButton
+                    title={'Historial'}
+                    navigation={navigation} onPress={"Historial"}
+                />
+
             </View>
+
 
             <View style={styles.out}>
                 <CustomButton
                     title={'Cerrar sesión'}
                     color={'main'}
                     navigation={navigation}
-                    onPress={()=> {
+                    onPress={() => {
                         setAuthData({})
                     }}
                 />
