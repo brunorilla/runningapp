@@ -5,7 +5,8 @@ import RoundButton from './roundbutton/';
 import ButtonsRow from "./buttonsRow/";
 import LapsTable from "./lapsTable";
 import Timer from "./timer";
-import asyncMethods from "../globals/globalHistory";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import History from "../history";
 
 const Chron = () => {
 
@@ -49,7 +50,7 @@ const Chron = () => {
         const [firstLap, ...other] = time.laps;
 
         setTime((prevState) => {
-            console.log(prevState);
+
             return {laps: [0, firstLap + prevState.now - prevState.start, ...other], start: timestamp, now: timestamp}
         })
     }
@@ -62,14 +63,50 @@ const Chron = () => {
     }
 
     const reset = async () => {
-        console.log(time.laps);
-        let response = await asyncMethods.storeData(asyncMethods.MY_STORAGE_KEY,time.laps);
-        console.log(response);
+        await storeData(time.laps, "laps")
         setTime({
             laps: [],
             start: 0,
             now: 0
-        })
+        });
+
+    }
+
+    const storeData = async (value, key) => {
+        try {
+            let data = await getData("laps").then(r => {
+                return r
+            });
+            if(typeof data === "undefined" || data === null || typeof data !== "object"){
+                console.log("data is null");
+                data = {values: []};
+            }
+            console.log("DATA: ---->", data);
+            console.log("Calling storeData");
+
+            const jsonValue = JSON.stringify(value)
+            console.log("JSON VALUE: ----> ", jsonValue)
+            let midTermValue = {
+                fullDate: new Date(),
+                totalTime : jsonValue
+            }
+            data.values.push(midTermValue);
+            console.log("Full Object", data)
+            await AsyncStorage.setItem(key, JSON.stringify(data))
+        } catch (e) {
+            console.log(e);
+            console.log("Error in storeData method");
+        }
+    }
+    const getData = async (key) => {
+        try {
+            const jsonValue = await AsyncStorage.getItem(key)
+            console.log(jsonValue)
+            return jsonValue != null ? JSON.parse(jsonValue) : null;
+
+        } catch (e) {
+            console.log("Error in getData method");
+        }
     }
 
     const resume = () => {

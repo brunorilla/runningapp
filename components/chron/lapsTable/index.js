@@ -18,7 +18,6 @@ const LapsTable = ({laps, time}) => {
 
         }
     })
-    debugger;
     return (
         <ScrollView style={styles.scrollView}>
             {laps.map((lap, index) =>(

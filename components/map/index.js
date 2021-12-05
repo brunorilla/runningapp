@@ -8,7 +8,7 @@ import * as Location from 'expo-location';
 const Index = ({navigation}) => {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    console.log(location);
+    //console.log(location);
     const [mapRegion, setmapRegion] = useState({latitude: -35.0279,
         longitude: -58.44420, latitudeDelta: 0.04, longitudeDelta: 0.05});
 
