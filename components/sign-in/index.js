@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import CustomButton from '../button';
+import GlobalContext from "../context"
 
 {/*import usuario from '../../assets/usuario.png';*/
 }
 import usuarioLog from '../../assets/usuarioLog.png'
 
 
+
 const SignIn = ({navigation}) => {
+    const context = useContext(GlobalContext)
+    
+    console.log(JSON.stringify(context))
     return (
         <View style={styles.singIn}>
             <View style={styles.main}>
-
+           
                 <Text style={styles.title}>
                     Inicio de sesión
                 </Text>

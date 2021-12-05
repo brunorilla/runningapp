@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import CustomButton from '../button';
 import logo from '../../assets/logo.png';
 import SignIn from "../sign-in";
+import GlobalContext from "../context"
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 
 const Welcome = ({navigation}) => {
+
+    const context= useContext(GlobalContext)
+
     return (
         <View style={styles.welcome}>
             <View style={styles.main}>
@@ -31,10 +35,10 @@ const Welcome = ({navigation}) => {
                     title={'Registrarse'}
                     color={'secondary'} navigation={navigation} onPress={"SignIn"}  //TODO: modificar vista
                 />
-                <CustomButton
+                {/* <CustomButton
                     title={'Mapa'}
                     color={'secondary'} color={'tertiary'} navigation={navigation} onPress={"Mapa"}
-                />
+                /> */}
             </View>
         </View>
     );
@@ -56,6 +60,8 @@ const styles = StyleSheet.create({
     },
     main: {
         flex: 0.8,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
     },
     marginTop: {
         marginTop: 10

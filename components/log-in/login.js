@@ -9,8 +9,11 @@ import * as Google from 'expo-auth-session/providers/google';
 export default function Login() {
 
     const [request, response, promptAsync] = Google.useAuthRequest({
-        expoClientId: '470463937632-ud5fd9mu4vbm8a62vejeo1vnvgog5d3e.apps.googleusercontent.com',
-     //   expoClientId: '470463937632-6f5th6gsiqpmb4j25ma5shb58ss97blg.apps.googleusercontent.com',
+        //expoClientId: '470463937632-ud5fd9mu4vbm8a62vejeo1vnvgog5d3e.apps.googleusercontent.com',
+       // expoClientId: '470463937632-6f5th6gsiqpmb4j25ma5shb58ss97blg.apps.googleusercontent.com',
+       // expoClientId: '1508004738815-jatd6lfg0u0ov6n5a2aftmj2pt8mm64i.apps.googleusercontent.com',
+       expoClientId: '508004738815-gf67e8hv615nuh0ub61537ss9h47tdse.apps.googleusercontent.com', // luz celu
+       //expoClientId: '508004738815-jatd6lfg0u0ov6n5a2aftmj2pt8mm64i.apps.googleusercontent.com', //luz
         iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
         androidClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
         webClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
@@ -20,15 +23,18 @@ export default function Login() {
         // console.log(response)
         if (response?.type === 'success') {
             const { authentication } = response;
-            console.log("authentication", authentication)
             fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${authentication.accessToken}`)
             .then(res => res.json())
             // .then(data => console.log(data))
-            .then(data => setAuthData({
+            .then(data => {
+                setAuthData({
                 nombre: data.given_name,
                 apellido: data.family_name,
-                email: data.email
-            }))
+                email: data.email,
+                userId: data.id,
+                accessToken: authentication.accessToken
+            })
+        })
         }
     }, [response])
 

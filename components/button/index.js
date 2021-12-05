@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext, { authData } from '../context';
 import {StyleSheet, Pressable, View, Text} from 'react-native';
 
 const CustomButton = ({navigation, onPress, title, color}) => {
+    const context= useContext(GlobalContext)
     console.log("OnPress equals: ", onPress);
     let buttonStyle;
     if (color === 'main') {
@@ -11,11 +13,22 @@ const CustomButton = ({navigation, onPress, title, color}) => {
     } else {
         buttonStyle = styles.tertiary;
     }
+
+    const onPressFunction = (onPress) => {
+        if (typeof(onPress) === 'string') {
+            navigation.navigate(onPress);
+        } else {
+            onPress();
+        }
+    }
+
+
     return (
         <View style={buttonStyle}>
             {/* Pendiente: sumar al Text el callback del onClick del texto según la función que se mande como parámetro */}
-            <Pressable title={title} onPress={() => navigation.navigate(onPress)}><Text
-                style={styles.text}>{title}</Text></Pressable>
+            <Pressable title={title} onPress={() => onPressFunction(onPress)}>
+                <Text style={styles.text}>{title}</Text>
+            </Pressable>
         </View>
     );
 }

@@ -10,39 +10,36 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import GlobalContext from './components/context';
+import LoggedMenu from './components/logged-menu/index';
 import Login from './components/log-in/login.js';
-
-
 
 const Stack = createStackNavigator();
 
 export default function App() {
 
-  const [AuthData, setAuthData] = useState({})
+  const [AuthData, setAuthData] = useState({});
 
-  const isAuthenticated = () => AuthData.email !== undefined
+  const isAuthenticated = () => AuthData.email !== undefined;
 
-  
+  console.log('AuthData: ', AuthData);
   return (
     <GlobalContext.Provider value={{ AuthData, setAuthData }} >
 
       <NavigationContainer>
-          {/* {
-          (isAuthenticated()) ? */}
+           {
+          (isAuthenticated()) ? 
         <Stack.Navigator initialRouteName="Bienvenido">
-          <Stack.Screen name="SignIn" component={SignIn} />
-          <Stack.Screen name="Bienvenido" component={Welcome}/>
+          <Stack.Screen name='LoggedMenu' component={LoggedMenu} />
           <Stack.Screen name="Mapa" component={Map}/>
           <Stack.Screen name="Chron" component={Chron}/>
-          <Stack.Screen name={'Login'} component={Login} />
         </Stack.Navigator>
-
-         {/* :
+          :
          <Stack.Navigator>
-
-           <Stack.Screen name={'Login'} component={Login} />
+           <Stack.Screen name="Bienvenido" component={Welcome}/>
+           <Stack.Screen name='Login' component={Login} />
+           <Stack.Screen name="SignIn" component={SignIn} />
          </Stack.Navigator>   
-       }  */}
+       }  
         </NavigationContainer>
 
         </GlobalContext.Provider>
