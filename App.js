@@ -28,13 +28,9 @@ export default function App() {
            {(isAuthenticated()) ?
         <Stack.Navigator initialRouteName="Bienvenido">
           <Stack.Screen name='LoggedMenu' component={LoggedMenu} />
-          <Stack.Screen name="SignIn" component={SignIn} />
-          <Stack.Screen name="Bienvenido" component={Welcome}/>
-          <Stack.Screen name="Menu Principal" component={MainMenu}/>
           <Stack.Screen name="Mapa" component={Map}/>
           <Stack.Screen name="Chron" component={Chron}/>
           <Stack.Screen name="Historial" component={History}/>
-          <Stack.Screen name={'Login'} component={Login} />
         </Stack.Navigator>
           :
          <Stack.Navigator>
