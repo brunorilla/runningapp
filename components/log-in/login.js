@@ -12,7 +12,7 @@ export default function Login() {
     const [request, response, promptAsync] = Google.useAuthRequest({
         //expoClientId: '470463937632-ud5fd9mu4vbm8a62vejeo1vnvgog5d3e.apps.googleusercontent.com',
        // expoClientId: '470463937632-6f5th6gsiqpmb4j25ma5shb58ss97blg.apps.googleusercontent.com',
-        expoClientId: '1508004738815-jatd6lfg0u0ov6n5a2aftmj2pt8mm64i.apps.googleusercontent.com', // celu Bruno
+        expoClientId: '109539642341-es6fe46cr02pu9mqkjbhtarg1ag5g8an.apps.googleusercontent.com', // celu Bruno
        //expoClientId: '508004738815-gf67e8hv615nuh0ub61537ss9h47tdse.apps.googleusercontent.com', // luz celu
        //expoClientId: '508004738815-jatd6lfg0u0ov6n5a2aftmj2pt8mm64i.apps.googleusercontent.com', //luz
         iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',

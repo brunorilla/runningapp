@@ -19,14 +19,13 @@ export default function App() {
   const [AuthData, setAuthData] = useState({});
 
   const isAuthenticated = () => AuthData.email !== undefined;
-
+  console.log("IS AUTHENTICATED---->",isAuthenticated() )
   console.log('AuthData: ', AuthData);
   return (
     <GlobalContext.Provider value={{ AuthData, setAuthData }} >
 
       <NavigationContainer>
-           {
-          (isAuthenticated()) ? 
+           {(isAuthenticated()) ?
         <Stack.Navigator initialRouteName="Bienvenido">
           <Stack.Screen name='LoggedMenu' component={LoggedMenu} />
           <Stack.Screen name="SignIn" component={SignIn} />
