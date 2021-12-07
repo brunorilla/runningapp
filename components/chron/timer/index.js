@@ -6,7 +6,13 @@ import ButtonsRow from "../buttonsRow/";
 
 
 const Index = ({interval, timerForLap}) => {
-    timerForLap !== 'true' ? styles.timer = styles.timerRegular : styles.timer = styles.timerForLap;
+    if (timerForLap !== 'true' && timerForLap !== 'history') {
+        styles.timer = styles.timerRegular;
+    } else if(timerForLap === 'history') {
+        styles.timer = styles.timerForHistory;
+    } else {
+        styles.timer = styles.timerForLap;
+    }
     const pad = (n) => n < 10 ? '0' + n : n;
     const duration = moment.duration(interval);
     const centiseconds = Math.floor(duration.milliseconds() / 10);
@@ -36,6 +42,12 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 18,
         fontWeight: '200'
+    },
+    timerForHistory: {
+        color: "#FFF",
+        fontSize: 18,
+        fontWeight: '200',
+        lineHeight: 22
     }
 })
 

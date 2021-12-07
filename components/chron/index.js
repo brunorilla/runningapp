@@ -105,7 +105,7 @@ const Chron = () => {
         let hours = IntTwoChars(date_ob.getHours());
         let minutes = IntTwoChars(date_ob.getMinutes());
         let seconds = IntTwoChars(date_ob.getSeconds());
-        return `Fecha: ${month}/${date}/${year} | Tiempo Total: ${hours}:${minutes}:${seconds} `;
+        return `Fecha: ${month}/${date}/${year} | Hora: ${hours}:${minutes}:${seconds} `;
 
         function IntTwoChars(i) {
             return (`0${i}`).slice(-2);

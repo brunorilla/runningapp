@@ -4,6 +4,8 @@ import logo from '../../assets/logo-short.png';
 import {ScrollView} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LapsTable from "../chron/lapsTable";
+import moment from "moment";
+import Timer from "../chron/timer/index"
 
 
 const History = ({navigation}) => {
@@ -24,12 +26,12 @@ const History = ({navigation}) => {
 
         let data = await getData("laps").then(r => {
             return r;
-        }).catch(()=>{
+        }).catch(() => {
             throw Error;
         })
         try {
-        setHistory(data);
-        } catch(e){
+            setHistory(data);
+        } catch (e) {
             console.error("Error fetching data")
         }
     }, [])
@@ -51,21 +53,44 @@ const History = ({navigation}) => {
         }
         return arr;
     }
+
+    const recorridoTotal = (timeAsString) => {
+        let arr = parseTime(timeAsString);
+        let tot = arr.reduce((prev, curr) => {
+            return prev + curr;
+        });
+        console.log(tot)
+        return tot;
+    }
+
     var layout;
-    try{
-    if(history === null){
-        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Aún no tiene historial de recorridos. Comience a correr!</Text>
-    } else if (typeof history === "undefined" || typeof history.values === "undefined"){
-        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Aún no tiene historial de recorridos. Comience a correr!</Text>
-    } else {
-        layout = history.values.map((data, index) => (
-            (<View style={styles.containerForList} key={index}>
-                <View style={styles.paddingVertical10}><Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>{data.fullDate}</Text></View>
-                <View style={[styles.paddingVertical2, styles.paddingHorizontal5]}><LapsTable laps={parseTime(data.totalTime)} time={0}></LapsTable></View>
-            </View>)
-        ))}
-    } catch(e){
-        layout = <Text style={[styles.text18,styles.timeStyles, styles.textAlignLeft,styles.blackColor]}>Error al buscar su historial. Consulte a servicio técnico</Text>
+    try {
+        if (history === null) {
+            layout =
+                <Text style={[styles.text18, styles.timeStyles, styles.textAlignLeft, styles.blackColor]}>Aún no tiene
+                    historial de recorridos. Comience a correr!</Text>
+        } else if (typeof history === "undefined" || typeof history.values === "undefined") {
+            layout =
+                <Text style={[styles.text18, styles.timeStyles, styles.textAlignLeft, styles.blackColor]}>Aún no tiene
+                    historial de recorridos. Comience a correr!</Text>
+        } else {
+            layout = history.values.map((data, index) => (
+                (<View style={styles.containerForList} key={index}>
+                    <View style={styles.paddingVertical10}>
+                        <Text
+                            style={[styles.text18, styles.timeStyles, styles.textAlignLeft, styles.blackColor]}>{data.fullDate}</Text>
+                    </View>
+                    <View style={[styles.paddingVertical2, styles.paddingHorizontal5]}><LapsTable
+                        laps={parseTime(data.totalTime)} time={0}/></View>
+                    <View style={styles.paddingVertical10}><Text style={{color: "#FFF", marginLeft: 100}}>Total</Text><Timer timerForLap={"history"} interval={recorridoTotal(data.totalTime)}/></View>
+
+                </View>)
+            ))
+        }
+    } catch (e) {
+        layout =
+            <Text style={[styles.text18, styles.timeStyles, styles.textAlignLeft, styles.blackColor]}>Error al buscar su
+                historial. Consulte a servicio técnico</Text>
         console.error("Error fetching history");
     }
     return (<View style={styles.container}>
@@ -92,7 +117,7 @@ const styles = StyleSheet.create({
         overflow: "scroll"
     },
     containerForList: {
-      display: "flex"
+        display: "flex"
     },
     scrollContainer: {
         display: "flex",
@@ -111,8 +136,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginTop: 10
     },
-    textAlignLeft : {
-      textAlign: "left"
+    textAlignLeft: {
+        textAlign: "left"
     },
     whiteColor: {
         color: "#FFF"
@@ -125,12 +150,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center"
     },
-    text18 : {
+    text18: {
         fontSize: 18,
         lineHeight: 22,
         alignItems: "center",
     },
-    timeStyles : {
+    timeStyles: {
         paddingTop: 20,
         paddingHorizontal: 5,
         backgroundColor: "#e7e1e1",
@@ -139,13 +164,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 10,
         borderColor: "#c2c2c2",
     },
-    timeContainer: {
-
-    },
+    timeContainer: {},
     paddingVertical10: {
         paddingVertical: 10
     },
-    paddingVertical2 : {
+    paddingVertical2: {
         paddingVertical: 2
     },
     paddingHorizontal5: {
