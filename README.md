@@ -1,9 +1,8 @@
 
 # running
-
-App para hacer circuitos de running o caminatas que, mediante la utilización de la API de Google Maps + GPS, permita hacer un seguimiento del recorrido que se hizo en km/millas más una funcionalidad de cronómetro para medir en cuánto tiempo se realizó el circuito.
-
-Running app (Chronometer/Timer + Map and History) - React Native App 
+Running application developed with Expo framework with React Native.
+The application has a chronometer/timer functionality to measure laps and the total circuit time. Each record will be persisted using the Local History API for the user to keep count of his/her circuits.
+It has an additional integration with Google Maps API to have a map view of the circuit.
 
 Views -
 Login: 
